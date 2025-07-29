@@ -1,0 +1,54 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code workspace settings
+.vscode/
+
+# Visual Studio settings
+*.vspscc
+*.vssscc
+.vs/
+
+# NuGet packages
+*.nupkg
+packages/
+# Uncomment if you use NuGet restore
+# *.nuget/
+
+# Build logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Resharper and Rider
+_ReSharper*/
+*.DotSettings.user
+
+# Test results
+TestResults/
+*.trx
+
+# Other IDE files
+*.dbmdl
+*.pdb
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Auto-generated files
+Generated_Code/
+
+# Publish output
+publish/
