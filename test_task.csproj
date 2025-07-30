@@ -59,6 +59,8 @@
     <Compile Include="Parsers\DATA_parser.cs" />
     <Compile Include="Parsers\BaseParser.cs" />
     <Compile Include="Parsers\MainParser.cs" />
+    <Compile Include="test_task.Tests\UnitTest1.cs" />
+    <Compile Include="Utils\Logger.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -71,7 +73,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\StringAnalysisResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,7 +98,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>

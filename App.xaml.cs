@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using test_task.Utils;
 
 namespace test_task
 {
@@ -13,5 +14,9 @@ namespace test_task
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Logger.ClearLog();
+        }
     }
 }

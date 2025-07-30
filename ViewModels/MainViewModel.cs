@@ -12,9 +12,7 @@ namespace test_task.ViewModels
     {
         private string _inputText;
         private string _analysisResult;
-        // Add these properties to your MainViewModel class
         private string _selectedFilePath;
-
         private string _selectedFileName;
 
         public string InputText
@@ -38,9 +36,6 @@ namespace test_task.ViewModels
             }
         }
 
-        public ICommand AnalyzeCommand { get; }
-        public ICommand ClearCommand { get; }
-        public ICommand AddFileCommand { get; }
         public string SelectedFilePath
         {
             get => _selectedFilePath;
@@ -65,9 +60,14 @@ namespace test_task.ViewModels
                 }
             }
         }
+
+        public ICommand AnalyzeCommand { get; }
+        public ICommand ClearCommand { get; }
+        public ICommand AddFileCommand { get; }
+
         public MainViewModel()
         {
-            AnalyzeCommand = new RelayCommand(Analyze, () => !string.IsNullOrWhiteSpace(InputText));
+            AnalyzeCommand = new RelayCommand(Analyze, () => !string.IsNullOrWhiteSpace(InputText) || !string.IsNullOrWhiteSpace(SelectedFileName));
             ClearCommand = new RelayCommand(Clear);
             AddFileCommand = new RelayCommand(AddFile);
         }
@@ -83,7 +83,8 @@ namespace test_task.ViewModels
                     foreach (var line in lines)
                     {
                         var result = MainParser.Parse(line);
-                        results.AppendLine(result.ToString());
+                        if(result  != string.Empty)
+                            results.AppendLine(result.ToString());
                     }
                     AnalysisResult = results.ToString();
                 }
@@ -94,15 +95,11 @@ namespace test_task.ViewModels
             }
             else
             {
-                if (!InputText.EndsWith("\r\n"))
-                {
-                    InputText += "\r\n";
-                }
                 var result = MainParser.Parse(InputText);
-                AnalysisResult = result.ToString();
+                if (result != string.Empty)
+                    AnalysisResult = result.ToString();
             }
         }
-
         private void Clear()
         {
             InputText = string.Empty;
@@ -121,11 +118,7 @@ namespace test_task.ViewModels
             openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt";
 
             if (openFileDialog.ShowDialog() == true)
-            {
-                string filePath = openFileDialog.FileName;
-                MessageBox.Show("Вы выбрали файл: " + filePath);
-                SetSelectedFile(filePath);
-            }
+                SetSelectedFile(openFileDialog.FileName);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

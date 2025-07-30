@@ -1,15 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using test_task.Models;
-
+﻿
 namespace test_task.Parsers
 {
     internal abstract  class BaseParser
     {
-        string Preamble { get; } // Например "DATA"
-        public abstract bool TryParse(string input, out StringAnalysisResult result);
+        public string Preamble { get; protected set; }
+        public string ReturnString { get; protected set; }
+
+        protected BaseParser(string preamble)
+        {
+            Preamble = preamble;
+        }
+
+        protected bool ValidPreamble(string input)
+        {
+            if(!input.StartsWith(Preamble))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public string GetResult()
+        {
+            return ReturnString;
+        }
+
+        public abstract bool TryParse(string input);
     }
 }
