@@ -55,18 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Parsers\BaseParser.cs" />
     <Compile Include="Parsers\CHANNEL_parser.cs" />
     <Compile Include="Parsers\DATA_parser.cs" />
-    <Compile Include="Parsers\BaseParser.cs" />
+    <Compile Include="Parsers\ERROR_parser.cs" />
     <Compile Include="Parsers\MainParser.cs" />
-    <Compile Include="test_task.Tests\UnitTest1.cs" />
     <Compile Include="Utils\Logger.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="Utils\StringAnalyzer.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -104,5 +103,6 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

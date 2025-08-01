@@ -2,9 +2,9 @@
 
 namespace test_task.Parsers
 {
-    internal class DATA_parser : BaseParser
+    internal class ERROR_parser : BaseParser
     {
-        public DATA_parser() : base("DATA"){}
+        public ERROR_parser() : base("ERROR") { }
 
         public override bool TryParse(string payload, out string result_string)
         {
@@ -13,18 +13,19 @@ namespace test_task.Parsers
             if (payload == null || payload == string.Empty)
             {
                 Logger.LogError($"Пустая полезная информация");
+                result_string = string.Empty;
                 return false;
             }
 
-            int awaited_payload_length = payload[0] - '0';
-            int payload_length = payload.Length - 1;
-            if (awaited_payload_length != payload_length)
+            int payload_length = payload.Length;
+            if (payload_length != 6)
             {
-                Logger.LogError($"Неверный байт длины. Ожидалось: {awaited_payload_length}, по факту:{payload_length} СТРОКА: \"{Preamble + payload}\"");
+                Logger.LogError($"Неверная длина полезной информации. Ожидалось: 6, по факту:{payload_length} СТРОКА: \"{Preamble + payload}\"");
+                
                 return false;
             }
 
-            result_string = Preamble + " " + payload.Substring(1);
+            result_string = Preamble + " " + payload;
             Logger.LogInfo($"Успешно разобрана строка: \"{Preamble + payload}\". Вывод: \"{result_string}\"");
             return true;
         }

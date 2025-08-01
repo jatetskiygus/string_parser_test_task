@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using test_task.Utils;
+﻿using System.Windows;
 
 namespace test_task
 {
@@ -14,9 +7,6 @@ namespace test_task
     /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-            Logger.ClearLog();
-        }
+
     }
 }

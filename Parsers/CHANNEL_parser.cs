@@ -4,24 +4,24 @@ namespace test_task.Parsers
 {
     internal class CHANNEL_parser : BaseParser
     {
-        public CHANNEL_parser() : base("CHANNEL=")
-        {
-            ReturnString = string.Empty;
-        }
+        public CHANNEL_parser() : base("CHANNEL="){}
 
-        public override bool TryParse(string input)
+        public override bool TryParse(string payload, out string result_string)
         {
-            if (!ValidPreamble(input))
+            result_string = string.Empty;
+
+            if (payload == null || payload == string.Empty)
             {
-                Logger.LogError($"Ошибка при разборе строки: преамбула не CHANNEL=. СТРОКА: \"{input}\"");
+                Logger.LogError($"Пустая полезная информация");
                 return false;
             }
 
-            int lengthStart = Preamble.Length;
-
-            string channel_number = input.Substring(lengthStart, input.Length - 2 - Preamble.Length);
-
-            ReturnString = Preamble.Substring(0, Preamble.Length - 1) + " " + channel_number;
+            for (int i = 0; i < Preamble.Length - 1; i++)
+            {
+                result_string += Preamble[i];
+            }
+            result_string += (" " + payload);
+            Logger.LogInfo($"Успешно разобрана строка: \"{Preamble + payload}\". Вывод: \"{result_string}\"");
             return true;
         }
     }
