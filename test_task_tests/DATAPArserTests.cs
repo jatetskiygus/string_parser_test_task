@@ -10,11 +10,11 @@ namespace test_task.Tests
         public void TryParse_ReturnsTrue_WhenPayloadLengthMatches()
         {
             var parser = new DATA_parser();
-            string payload = "5jgnasp";
+            string payload = "5jgnap";
             bool result = parser.TryParse(payload, out string resultString);
 
             Assert.IsTrue(result);
-            Assert.AreEqual("DATA jgnasp", resultString);
+            Assert.AreEqual("DATA jgnap", resultString);
         }
 
         [TestMethod]
